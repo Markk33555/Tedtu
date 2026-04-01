@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Tool</title>
-</head>
-<body>
-
-<h2>Tool simplu</h2>
-
-<textarea id="input" placeholder="Scrie ceva..."></textarea>
-<br><br>
-
-<button onclick="run()">Generează</button>
-
-<p id="output"></p>
-
 <script>
-function run() {
+async function run() {
   const text = document.getElementById("input").value;
 
-  document.getElementById("output").innerText = 
-    "Ai scris: " + text;
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer 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"
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "user",
+          content: "Scrie o descriere care vinde pentru: " + text
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+
+  document.getElementById("output").innerText =
+    data.choices[0].message.content;
 }
 </script>
-
-</body>
-</html>
