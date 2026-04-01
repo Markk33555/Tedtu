@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Tool</title>
+</head>
+<body>
+
+<h2>Tool simplu</h2>
+
+<textarea id="input" placeholder="Scrie ceva..."></textarea>
+<br><br>
+
+<button onclick="run()">Generează</button>
+
+<p id="output"></p>
+
+<script>
+function run() {
+  const text = document.getElementById("input").value;
+
+  document.getElementById("output").innerText = 
+    "Ai scris: " + text;
+}
+</script>
+
+</body>
+</html>
